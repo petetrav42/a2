@@ -86,7 +86,7 @@
                 </div>
             <?php endif; ?>
         </div>
-    <? endif; ?>
+    <?php endif; ?>
 </div>
 </body>
 </html>
