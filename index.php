@@ -18,7 +18,7 @@
         <div class='form-group'>
             <label for='initialBill' class='col-sm-5 control-label'>How much is your bill?<span class="required">*</span></label>
             <div class='col-sm-3'>
-                <input type='number' name='initialBill' id='initialBill' value='<?=sanitize($initialBill)?>' step='.01' class='form-control' required>
+                <input type='text' name='initialBill' id='initialBill' value='<?=sanitize($initialBill)?>' class='form-control' required>
             </div>
         </div>
         <div class='form-group'>
