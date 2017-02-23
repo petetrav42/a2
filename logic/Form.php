@@ -64,7 +64,11 @@ class Form {
      *   <input type='text' name='email' value='<?=$form->prefill($email, "example@gmail.com")?>'>
      */
     public function prefill($field, $default = '', $sanitize = true) {
-    dump($field);
+
+
+        echo '<pre>';
+        var_dump($field);
+        echo '</pre>';
         if(isset($this->request[$field])) {
             if($sanitize) {
                 return $this->sanitize($this->request[$field]);
@@ -243,6 +247,4 @@ class Form {
     private function decimal($value) {
         return is_numeric($value);
     }
-
-
 } # end of class

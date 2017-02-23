@@ -18,25 +18,25 @@
         <div class='form-group'>
             <label for='initialBill' class='col-sm-5 control-label'>How much is your bill?<span class="required">*</span></label>
             <div class='col-sm-3'>
-                <input type='number' name='initialBill' id='initialBill' value='<?=$form->prefill($initialBill)?>' step='.01' class='form-control' required>
+                <input type='number' name='initialBill' id='initialBill' value='<?=sanitize($initialBill)?>' step='.01' class='form-control' required>
             </div>
         </div>
         <div class='form-group'>
-            <label for='splitNumber' class='col-sm-5 control-label'>Split how many ways?<span class="required">*</span></label>
+            <label for='splitNumber' class='col-sm-5 control-label'>Split bill how many ways?<span class="required">*</span></label>
             <div class='col-sm-3'>
-                <input type='number' name='splitNumber' id='splitNumber' value='<?=$form->prefill($splitNumber)?>' class='form-control'>
+                <input type='number' name='splitNumber' id='splitNumber' value='<?=sanitize($splitNumber)?>' class='form-control' required>
             </div>
         </div>
         <div class='form-group'>
-            <label for='tipPercentage' class='col-sm-5 control-label'>How was the service?<span class="required">*</span></label>
+            <label for='service' class='col-sm-5 control-label'>How was the service?<span class="required">*</span></label>
             <div class='col-sm-3'>
-                <select class='form-control' name='tipPercentage' id='tipPercentage'>
+                <select class='form-control' name='service' id='service' required>
                     <option value=''>Choose One</option>
-                    <option value='excellent' <?php if($tipPercentage == 'excellent') echo 'SELECTED'?>>Excellent - 20% Tip</option>
-                    <option value='good' <?php if($tipPercentage == 'good') echo 'SELECTED'?>>Good - 18% Tip</option>
-                    <option value='average' <?php if($tipPercentage == 'average') echo 'SELECTED'?>>Average - 15% Tip</option>
-                    <option value='poor' <?php if($tipPercentage == 'poor') echo 'SELECTED'?>>Poor - 10% Tip</option>
-                    <option value='horrible' <?php if($tipPercentage == 'horrible') echo 'SELECTED'?>>Horrible - No Tip</option>
+                    <option value='excellent' <?php if($service == 'excellent') echo 'SELECTED'?>>Excellent - 20% Tip</option>
+                    <option value='good' <?php if($service == 'good') echo 'SELECTED'?>>Good - 18% Tip</option>
+                    <option value='average' <?php if($service == 'average') echo 'SELECTED'?>>Average - 15% Tip</option>
+                    <option value='poor' <?php if($service == 'poor') echo 'SELECTED'?>>Poor - 10% Tip</option>
+                    <option value='horrible' <?php if($service == 'horrible') echo 'SELECTED'?>>Horrible - No Tip</option>
                 </select>
             </div>
         </div>
@@ -52,10 +52,16 @@
             <div class='col-sm-offset-5 col-sm-10'>
                 <input type='submit' class='btn btn-default'>
             </div>
+            <div class='col-sm-offset-5 col-sm-6'>
+                <p><span class="required">*</span> Required</p>
+            </div>
+
         </div>
     </form>
+
     <?php if ($form->isSubmitted()): ?>
         <div class='text-center'>
+
             <?php if($errors): ?>
                 <div class='alert alert-danger'>
                     <?php foreach ($errors as $error): ?>
@@ -64,8 +70,19 @@
                 </div>
             <?php elseif (!$errors): ?>
                 <div class='alert alert-success'>
-                    <p>Your bill without rounding is: $<?=$billWithTip?></p>
-                    <p>Your final bill with rounding is: $<?=$finalBill?></p>
+                    <p>Initial Bill: $<?=$initialBill?></p>
+
+                    <?php if($splitNumber > 1): ?>
+                        <p>Splitting Bill: <?=$splitNumber?> ways</p>
+                    <?php endif; ?>
+
+                    <p>Tip percentage: <?=$calculateTip->tipPercentage[$service]?>%</p>
+
+                    <p>Amount each person pays without rounding: $<?=$billWithTip?></p>
+
+                    <?php if(!is_null($finalBill)): ?>
+                        <p>Amount each person pays when rounding: $<?=$finalBill?></p>
+                    <?php endif; ?>
                 </div>
             <?php endif; ?>
         </div>

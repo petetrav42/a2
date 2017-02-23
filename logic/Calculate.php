@@ -4,15 +4,21 @@ namespace TIP;
 
 class Calculate{
 
-    private $tipAmount;
+    public $tipPercentage;
 
+    /**
+     * Default Construct
+     */
     public function __construct()
     {
         //Create an array to map the service quality to tip percentage
-        $this->tipAmount = ['excellent' => .2,'good' => .18,'average' => .15,'poor' => .1,'horrible' => 0];
+        $this->tipPercentage = ['excellent' => 20,'good' => 18,'average' => 15,'poor' => 10,'horrible' => 0];
     }
 
-    public function calculateBillWithTip($initialBill, $splitNumber, $tipPercentage)
+    /**
+     * Returns the calculated bill depending on the tip amount
+     */
+    public function calculateBillWithTip($initialBill, $splitNumber, $service)
     {
         //Divide the initial bill amount by the number specified in the form
         //Will only divide if greater than 0 otherwise splitAmount is the initialBill
@@ -23,12 +29,16 @@ class Calculate{
         }
 
         //calculate the bill with the tip specified in the form.
-        $calculateTip = $splitAmount + ($splitAmount * $this->tipAmount[$tipPercentage]);
+        //divide tipPercentage by 100 to get percentage in decimal
+        $calculateTip = $splitAmount + ($splitAmount * ($this->tipPercentage[$service]/100));
 
         //Return value needs to be rounded to 2 decimal places.
         return round($calculateTip,2,PHP_ROUND_HALF_UP);
     }
 
+    /**
+     * Returns a rounded final bill if rounding is selected
+     */
     public function roundTip($amount, $roundTip)
     {
         //round if indicated
