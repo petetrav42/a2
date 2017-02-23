@@ -16,7 +16,7 @@
 
     <form method='get' action='index.php' class='form-horizontal'>
         <div class='form-group'>
-            <label for='initialBill' class='col-sm-5 control-label'>How much is your bill?<span class="required">*</span></label>
+            <label for='initialBill' class='col-sm-5 control-label'>How much is your initial bill?<span class="required">*</span></label>
             <div class='col-sm-3'>
                 <input type='text' name='initialBill' id='initialBill' value='<?=sanitize($initialBill)?>' class='form-control' required>
             </div>
@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class='form-group'>
-            <label class='col-sm-5 control-label'>Round Tip?</label>
+            <label class='col-sm-5 control-label'>Round tip?</label>
             <div class='col-sm-3 radio-padding'>
                 <p class='radio'><input type='radio' name='roundTip' value='roundUp' <?php if($roundTip == 'roundUp') echo 'CHECKED'?>/>Round Up</p>
                 <p class='radio'><input type='radio' name='roundTip' value='roundDown' <?php if($roundTip == 'roundDown') echo 'CHECKED'?>/>Round Down</p>
