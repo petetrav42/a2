@@ -18,13 +18,13 @@
         <div class='form-group'>
             <label for='initialBill' class='col-sm-5 control-label'>How much is your initial bill?<span class="required">*</span></label>
             <div class='col-sm-3'>
-                <input type='text' name='initialBill' id='initialBill' value='<?=sanitize($initialBill)?>' class='form-control' required>
+                <input type='text' name='initialBill' id='initialBill' value='<?=$form->sanitize($initialBill)?>' class='form-control' required>
             </div>
         </div>
         <div class='form-group'>
             <label for='splitNumber' class='col-sm-5 control-label'>Split bill how many ways?<span class="required">*</span></label>
             <div class='col-sm-3'>
-                <input type='number' name='splitNumber' id='splitNumber' value='<?=sanitize($splitNumber)?>' class='form-control' required>
+                <input type='number' name='splitNumber' id='splitNumber' value='<?=$form->sanitize($splitNumber)?>' class='form-control' required>
             </div>
         </div>
         <div class='form-group'>
@@ -32,11 +32,11 @@
             <div class='col-sm-3'>
                 <select class='form-control' name='service' id='service' required>
                     <option value=''>Choose One</option>
-                    <option value='excellent' <?php if($service == 'excellent') echo 'SELECTED'?>>Excellent - 20% Tip</option>
-                    <option value='good' <?php if($service == 'good') echo 'SELECTED'?>>Good - 18% Tip</option>
-                    <option value='average' <?php if($service == 'average') echo 'SELECTED'?>>Average - 15% Tip</option>
-                    <option value='poor' <?php if($service == 'poor') echo 'SELECTED'?>>Poor - 10% Tip</option>
-                    <option value='horrible' <?php if($service == 'horrible') echo 'SELECTED'?>>Horrible - No Tip</option>
+                    <option value='<?=$form->sanitize('excellent')?>' <?php if($service == 'excellent') echo 'SELECTED'?>>Excellent - 20% Tip</option>
+                    <option value='<?=$form->sanitize('good')?>' <?php if($service == 'good') echo 'SELECTED'?>>Good - 18% Tip</option>
+                    <option value='<?=$form->sanitize('average')?>' <?php if($service == 'average') echo 'SELECTED'?>>Average - 15% Tip</option>
+                    <option value='<?=$form->sanitize('poor')?>' <?php if($service == 'poor') echo 'SELECTED'?>>Poor - 10% Tip</option>
+                    <option value='<?=$form->sanitize('horrible')?>' <?php if($service == 'horrible') echo 'SELECTED'?>>Horrible - No Tip</option>
                 </select>
             </div>
         </div>
