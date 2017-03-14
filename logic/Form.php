@@ -247,4 +247,10 @@ class Form {
     private function decimal($value) {
         return is_numeric($value);
     }
+
+    function dump($mixed = null) {
+        echo '<pre>';
+        var_dump($mixed);
+        echo '</pre>';
+    }
 } # end of class
