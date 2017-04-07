@@ -78,7 +78,7 @@
 
                     <p>Tip percentage: <?=$calculateTip->tipPercentage[$service]?>%</p>
 
-                    <p>Amount each person pays without rounding: $<?=$billWithTip?></p>
+                    <p>Amount each person will pay without rounding: $<?=$billWithTip?></p>
 
                     <?php if(!is_null($finalBill)): ?>
                         <p>Amount each person pays when rounding: $<?=$finalBill?></p>
